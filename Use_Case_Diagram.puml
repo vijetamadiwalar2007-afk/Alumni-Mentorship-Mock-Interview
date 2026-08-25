@@ -1,0 +1,63 @@
+@startuml
+title Alumni Mentorship & Mock Interview Platform
+title Use-Case Diagram
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Student Mentee" as Student
+actor "Alumni Mentor" as Mentor
+actor "Calendar & Meeting Service" as Calendar
+
+rectangle "Alumni Mentorship & Mock Interview Platform" {
+
+  usecase "UC-01\nFind / Match Mentor" as UC01
+  usecase "UC-02\nView Mentor Profile &\nAvailability" as UC02
+  usecase "UC-03\nBook Mentorship Session" as UC03
+  usecase "UC-04\nBook Mock Interview" as UC04
+  usecase "UC-05\nView Feedback &\nScorecard" as UC05
+
+  usecase "UC-06\nManage Profile" as UC06
+  usecase "UC-07\nManage Availability" as UC07
+  usecase "UC-08\nConduct Mentorship\nSession" as UC08
+  usecase "UC-09\nConduct Mock Interview" as UC09
+  usecase "UC-10\nRecord Feedback &\nScorecard" as UC10
+
+  usecase "UC-11\nCheck Availability" as UC11
+  usecase "UC-12\nCreate Calendar Event" as UC12
+  usecase "UC-13\nGenerate Meeting Link" as UC13
+  usecase "UC-14\nReschedule Booked\nSession" as UC14
+}
+
+Student --> UC01
+Student --> UC02
+Student --> UC03
+Student --> UC04
+Student --> UC05
+Student --> UC14
+
+Mentor --> UC06
+Mentor --> UC07
+Mentor --> UC08
+Mentor --> UC09
+Mentor --> UC10
+
+Calendar --> UC12
+Calendar --> UC13
+
+UC01 ..> UC02 : <<include>>
+UC03 ..> UC11 : <<include>>
+UC03 ..> UC12 : <<include>>
+UC03 ..> UC13 : <<include>>
+
+UC04 ..> UC11 : <<include>>
+UC04 ..> UC12 : <<include>>
+UC04 ..> UC13 : <<include>>
+
+UC08 ..> UC10 : <<include>>
+UC09 ..> UC10 : <<include>>
+
+UC14 ..> UC03 : <<extend>>
+
+@enduml
